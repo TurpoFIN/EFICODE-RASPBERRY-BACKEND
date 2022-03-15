@@ -10,6 +10,7 @@
   "author": "Marc Smeds, Tuomas Ola, Daniel Ovaskainen-Gulda",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.0",
     "express": "^4.17.3"
   }
 }
