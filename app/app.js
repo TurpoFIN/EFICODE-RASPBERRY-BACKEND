@@ -1,7 +1,7 @@
 const express = require('express');
 const cFilter = require('../PRIVATE/MODULES/cFilter');
 const dHandler = require('../PRIVATE/MODULES/dataHandler');
-const dbCon = require('../PRIVATE/MODULES/mysql-handler');
+const db = require('../PRIVATE/MODULES/mysql-handler');
 const fs = require('fs');
 const { env } = require('process');
 
@@ -26,7 +26,8 @@ app.post('/', (req, res) => {
 app.post('/API/IO_DEVICES/DATA/UPDATE', (req, res) => {
     if (cFilterSession.checkConnection({ip: req.ip})) {
         if (req.body.clientKey) {
-
+            getRuuvi({clientKey: ''}, (results) => {
+            });
         }
     } else {
         res.end();
@@ -41,4 +42,24 @@ app.post('/API/IO_DEVICES/CONFIG/GET', (req, res) => {
     } else {
         res.end();
     }
-})
+});
+
+function getRuuvi(options, cb) {
+    db.getTableContents((res => {
+        if (!res.err) {
+            const tags = res.results;
+
+            tags.forEach(tag => {
+                if (options.clientKey) {
+                    tags.forEach(tag => {
+                        console.log(tag);
+                    });
+                } else if (options.tagId) {
+            
+                }
+            });
+        }
+
+        console.log(res);
+    }))
+}
