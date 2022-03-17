@@ -27,6 +27,7 @@ app.post('/API/IO_DEVICES/DATA/UPDATE', (req, res) => {
     if (cFilterSession.checkConnection({ip: req.ip})) {
         if (req.body.clientKey) {
             getRuuvi({clientKey: ''}, (results) => {
+
             });
         }
     } else {
@@ -62,4 +63,8 @@ function getRuuvi(options, cb) {
 
         console.log(res);
     }))
+}
+
+function addClientKey(tagId) {
+    
 }
