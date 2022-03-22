@@ -30,7 +30,7 @@ app.post('/', (req, res) => {
 app.post('/API/IO_DEVICES/DATA/UPDATE', (req, res) => {
     if (cFilterSession.checkConnection({ip: req.ip})) {
         if (req.body.clientKey) {
-
+            
         } else {
             res.send({err_c: 400, err: true});
         }
