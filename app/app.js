@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser')
 const cFilter = require('../PRIVATE/MODULES/cFilter');
 const dHandler = require('../PRIVATE/MODULES/dataHandler');
 const db = require('../PRIVATE/MODULES/mysql-handler');
@@ -16,6 +17,10 @@ console.log(characters.length);
 require('dotenv').config();
 
 console.log(env.MYSQL_HOST);
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.use(bodyParser.json())
 
 app.configure(function(){
     app.use(express.bodyParser());
