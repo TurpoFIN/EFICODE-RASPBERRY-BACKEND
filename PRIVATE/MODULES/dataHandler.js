@@ -1,4 +1,5 @@
 const dataObj = {};
+const origin = require('../../app/app');
 
 module.exports = {
     getData: (options) => {
@@ -10,8 +11,22 @@ module.exports = {
         return results;
     },
 
-    updateData: (entry) => {
+    updateData: (entry, cb) => {
         console.log("New data entry!");
         console.log(entry);
+
+        for (const [key, value] of Object.entries(entry.data)) {
+            console.log(`${key}: ${value}`);
+            origin.getRuuvi({ruuviId: key}, res => {
+                console.log(res);
+                if (!res.err) {
+
+                } else {
+                    
+                }
+            });
+        }
+
+        return true;
     }
 }

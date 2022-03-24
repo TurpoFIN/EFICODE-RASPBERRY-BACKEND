@@ -61,22 +61,34 @@ module.exports = {
     tableAddRow: (cb, options) => {
         if (options && cb) {
             if (options.table && options.data) {
-                let varString = "(";
-                let valString = "(";
+                let varString = "";
+                let valString = "";
                 let i = 0;
 
                 //console.log(options);
 
-                options.data.forEach(e => {
-                    varString = varString + (i>0 ? "," : "") + "\`" + e[0] + "\`";
-                    valString = valString + (i>0 ? "," : "") + "\'" + e[1] + "\'";
+                options.data.forEach(e => { // TODO: FUCKKKKKKSKADOJKASOIDAIUDIKUA
+                    varString = varString + (i>0 ? "," : "(") + "\`" + e[0] + "\`";
+
+                    if (e[1] instanceof Array) {
+                        e.forEach(entries => {
+                            let y = 0;
+                            entries.forEach(value => {
+                                valString = valString + (y>0 ? "," : ")") + "\'" + value + "\'";
+                                y++;
+                            })
+                            valString = valString + ")"
+                        })
+                    } else {
+                        valString = valString + (i>0 ? "," : "(") + "\'" + e[1] + "\'";
+                    }
                     i++;
                 });
 
                 varString = varString + ")"
                 valString = valString + ")"
 
-                //console.log(`INSERT INTO \`${options.table}\` ${varString} VALUES ${valString}`);
+                console.log(`INSERT INTO \`${options.table}\` ${varString} VALUES ${valString}`);
 
                 if (varString !== "()") {
                     connection.execute(`INSERT INTO \`${options.table}\` ${varString} VALUES ${valString}`, [], (error, results) => {

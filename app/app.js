@@ -12,7 +12,9 @@ const dir = __dirname.split('\\app')[0]
 
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-console.log(characters.length);
+let a = [];
+
+console.log(a instanceof Array);
 
 require('dotenv').config();
 
@@ -37,8 +39,22 @@ app.post('/API/IO_DEVICES/DATA/UPDATE', (req, res) => {
         console.log(req.body);
         console.log(req.body.dataPackage);
         if (req.body.dataPackage.clientKey) {
-            res.status(200);
-            res.send({err_c: 200, err: false, results: {}});
+            getClientKey(req.body.dataPackage.clientKey, key => {
+                if (!key.err) {
+                    if (dHandler.updateData(req.body.dataPackage)) {
+
+                        res.status(200);
+                        res.send({err_c: 200, err: false, results: {}});
+                    } else {
+                        res.status(400);
+                        res.send({err_c: 400, err: true, results: {}});
+                    }
+
+                } else {
+                    res.status(405);
+                    res.send({err_c: 400, err: true, results: {}});
+                }
+            })
         } else {
             res.status(400);
             res.send({err_c: 400, err: true});
@@ -183,6 +199,14 @@ class ruuviTag {
     }
 }
 
+module.exports = {
+    getRuuvi: (options, cb) => {return getRuuvi(options, cb)}
+}
+
+
+/*
+        FOR TESTING
+
 let test = new ruuviTag({id: 0, name: 'test'});
 
 addClientKey(test, res => {
@@ -194,3 +218,4 @@ addClientKey(test, res => {
     }
 });
 
+*/
