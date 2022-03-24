@@ -175,8 +175,10 @@ let test = new ruuviTag({id: 0, name: 'test'});
 
 addClientKey(test, res => {
     console.log(res);
-    getClientKey(res.results.secretKey, res => {
-        console.log(res);
-    })
+    if (!res.err) {
+        getClientKey(res.results.secretKey, res => {
+            console.log(res);
+        });
+    }
 });
 
