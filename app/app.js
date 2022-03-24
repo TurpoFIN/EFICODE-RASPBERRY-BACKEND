@@ -17,6 +17,10 @@ require('dotenv').config();
 
 console.log(env.MYSQL_HOST);
 
+app.configure(function(){
+    app.use(express.bodyParser());
+});
+
 app.listen(process.env.PORT ? process.env.PORT : 80);
 
 app.get('/', (req, res) => {
