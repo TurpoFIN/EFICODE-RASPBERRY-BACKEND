@@ -34,6 +34,7 @@ app.post('/', (req, res) => {
 
 app.post('/API/IO_DEVICES/DATA/UPDATE', (req, res) => {
     if (cFilterSession.checkConnection({ip: req.ip})) {
+        console.log(req.body);
         if (req.body.dataPackage.clientKey) {
             res.status(200);
             res.send({err_c: 200, err: false, results: {}});
@@ -48,6 +49,7 @@ app.post('/API/IO_DEVICES/DATA/UPDATE', (req, res) => {
 
 app.post('/API/IO_DEVICES/CONFIG/GET', (req, res) => {
     if (cFilterSession.checkConnection({ip: req.ip})) {
+        console.log(req.body);
         if (req.body.dataPackage.clientKey) {
             getClientKey(req.body.dataPackage.clientKey, (obj => {
                 if (obj.err) res.send({err_c: 404, err: true});
