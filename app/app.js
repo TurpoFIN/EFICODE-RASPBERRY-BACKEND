@@ -22,10 +22,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
-app.configure(function(){
-    app.use(express.bodyParser());
-});
-
 app.listen(process.env.PORT ? process.env.PORT : 80);
 
 app.get('/', (req, res) => {
