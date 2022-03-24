@@ -48,7 +48,7 @@ app.post('/API/IO_DEVICES/CONFIG/GET', (req, res) => {
                     console.log(obj);
                     res.send({err_c: 200, err: false, results: obj});
                 }
-            }))
+            }));
         } else {
             res.send({err_c: 400, err: true});
         }
