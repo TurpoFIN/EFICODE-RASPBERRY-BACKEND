@@ -30,8 +30,10 @@ app.post('/', (req, res) => {
 app.post('/API/IO_DEVICES/DATA/UPDATE', (req, res) => {
     if (cFilterSession.checkConnection({ip: req.ip})) {
         if (req.body.clientKey) {
-            
+            res.status(200);
+            res.send({err_c: 200, err: false, results: {}});
         } else {
+            res.status(400);
             res.send({err_c: 400, err: true});
         }
     } else {
@@ -46,10 +48,12 @@ app.post('/API/IO_DEVICES/CONFIG/GET', (req, res) => {
                 if (obj.err) res.send({err_c: 404, err: true});
                 else {
                     console.log(obj);
+                    res.status(200);
                     res.send({err_c: 200, err: false, results: obj});
                 }
             }));
         } else {
+            res.status(400);
             res.send({err_c: 400, err: true});
         }
     } else {
