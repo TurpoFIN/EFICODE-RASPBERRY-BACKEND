@@ -35,6 +35,7 @@ app.post('/', (req, res) => {
 app.post('/API/IO_DEVICES/DATA/UPDATE', (req, res) => {
     if (cFilterSession.checkConnection({ip: req.ip})) {
         console.log(req.body);
+        console.log(req.body.dataPackage);
         if (req.body.dataPackage.clientKey) {
             res.status(200);
             res.send({err_c: 200, err: false, results: {}});
