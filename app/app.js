@@ -128,7 +128,7 @@ function addClientKey(ruuviobj, cb) {
                     console.log(response);
     
                     if (response.err.err)  cb({err_c: 500, err: true});
-                    else  cb({err_c: 200, err: false, results: {secretKey, ruuviObj}}); 
+                    else  cb({err_c: 200, err: false, results: {secretKey, ruuviobj}}); 
                 }, {table: 'clientKeys', data: [['secretKey', secretKey], ['data', JSON.stringify(ruuviobj.simpleObj())]]})
             }
         }, {table: 'clientKeys', columns: [], conditions: []});
