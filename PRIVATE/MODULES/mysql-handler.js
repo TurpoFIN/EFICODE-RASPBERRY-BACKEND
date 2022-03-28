@@ -74,7 +74,7 @@ module.exports = {
                         e.forEach(entries => {
                             let y = 0;
                             entries.forEach(value => {
-                                valString = valString + (y>0 ? "," : ")") + "\'" + value + "\'";
+                                valString = valString + (y>0 ? "," : "(") + "\'" + value + "\'";
                                 y++;
                             })
                             valString = valString + ")"
@@ -90,7 +90,7 @@ module.exports = {
 
                 console.log(`INSERT INTO \`${options.table}\` ${varString} VALUES ${valString}`);
 
-                if (varString !== "()") {
+                if (varString !== ")") {
                     connection.execute(`INSERT INTO \`${options.table}\` ${varString} VALUES ${valString}`, [], (error, results) => {
                         if (results)
                             cb({err: new err('200'), results: true});
