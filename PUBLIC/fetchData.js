@@ -33,21 +33,23 @@ let ruuviData = {
         console.log(ruuviData);
         if (!data.err) {
             let time = [];
-            let temperature = [];
-            let humidity = [];
-            let pressure = [];
-            let acceleration = [];
+            let temperatureArr = [];
+            let humidityArr = [];
+            let pressureArr = [];
+            let accelerationArr = [];
   
             for (const [key, year] of Object.entries(data.results.dataObj)) { // Year
                 for (const [key, month] of Object.entries(year)) { // Month
                     for (const [key, day] of Object.entries(month)) { // Day
                         for (const [key, hour] of Object.entries(day)) { // Hour
                             hour.forEach(arr => {
-                                time.push(arr.date);
-                                temperature.push(arr.data.temperature);
-                                humidity.push(arr.data.humidity);
-                                pressure.push(arr.data.pressure);
-                                acceleration.push(arr.data.acceleration);
+                              let date = new Date(arr.date);
+                              time.push(`${date.getYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`);
+                              temperatureArr.push(arr.data.temperature);
+                              humidityArr.push(arr.data.humidity);
+                              pressureArr.push(arr.data.pressure/1000);
+                              //console.log(arr.data);
+                              //accelerationArr.push(arr.data.acceleration);
                             })
                         }
                     }
@@ -56,12 +58,17 @@ let ruuviData = {
   
             if (time.length > 0) {
               ruuviData.time = time;
-              ruuviData.temperature = temperature;
-              ruuviData.humidity = humidity;
-              ruuviData.pressure = pressure;
-              ruuviData.acceleration = acceleration;
+              ruuviData.temperature = temperatureArr;
+              ruuviData.humidity = humidityArr;
+              ruuviData.pressure = pressureArr;
+              ruuviData.acceleration = accelerationArr;
   
-              console.log(ruuviData);
+              console.log(accelerationArr);
+
+              temperature.setValue(Math.round(temperatureArr[temperatureArr.length-1]));
+              humidity.setValue(Math.round(humidityArr[humidityArr.length-1]));
+              pressure.setValue(Math.ceil(pressureArr[pressureArr.length-1]));
+              acceleration.setValue('-');
   
               updateGraph();
             }

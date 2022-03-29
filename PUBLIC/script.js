@@ -32,20 +32,22 @@ const myChart = new Chart(
 );
 
 function updateGraph() {
+    console.log(temperature.background.style.background);
+    
     let config = {
         type: 'line',
         data: {
             labels: ruuviData.time,
             datasets: [{
                 label: 'Temperature',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: temperature.background.style.background,
+                borderColor: temperature.background.style.background,
                 data: ruuviData.temperature,
                 tension: 0.2,
             }, {
                 label: 'Humidity',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: humidity.background.style.background,
+                borderColor: humidity.background.style.background,
                 data: ruuviData.humidity,
                 tension: 0.2,
             }, {
@@ -54,16 +56,24 @@ function updateGraph() {
                 borderColor: 'rgb(255, 99, 132)',
                 data: ruuviData.pressure,
                 tension: 0.2,
-            }, {
+            }]
+
+            /*  
+                , {
                 label: 'Acceleration',
                 backgroundColor: 'rgb(255, 99, 132)', 
                 borderColor: 'rgb(255, 99, 132)',
                 data: ruuviData.acceleration,
                 tension: 0.2,
-            }]
+            }
+            */
+        },
+        options: {
+            aspectRatio: 1.5,
         }
     }
 
-    myChart.config = config;
+    console.log(myChart.config);
+    myChart.config._config = config;
     myChart.update();
 }

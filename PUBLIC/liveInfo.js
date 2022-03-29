@@ -32,7 +32,9 @@ class dataElem {
 
 const liveInfo = document.getElementById('liveInfo');
 const temperature = new dataElem(liveInfo.children[1].children[0].children[0], '°C', -60, 60, [71, 96, 255], [255, 45, 36]);
-const humidity = liveInfo.children[1].children[0].children[1];
+const humidity = new dataElem(liveInfo.children[1].children[0].children[1], '%', -1, 1, [10, 36, 99], [10, 36, 99]);
+const pressure = new dataElem(liveInfo.children[2].children[0].children[0], 'kPa', -1, 1, [10, 36, 99], [10, 36, 99]);
+const acceleration = new dataElem(liveInfo.children[2].children[0].children[1], '', -1, 1, [10, 36, 99], [10, 36, 99]);
 
 console.log(temperature);
 
