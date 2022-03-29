@@ -10,6 +10,7 @@ body {
 }
 
 .menu {
+    z-index: 10000;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -27,7 +28,18 @@ body {
     width: 7vw;
 }
 
-.menu a {
+.menu div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 5vh;
+    width: 5vw;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu div a {
+    position: absolute;
     text-decoration: none;
     cursor: pointer;
     overflow: hidden;
@@ -40,8 +52,32 @@ body {
     transition: all 0.5s ease-in-out;
 }
 
-.menu:hover a {
+.menu:hover div a {
     opacity: 1;
+}
+
+.menu div #sIcon {
+    top: 3vw;
+}
+
+.menu div #hIcon {
+    top: 1vw;
+}
+
+.menu div img {
+    position: absolute;
+    left: 1.5vw;
+    opacity: 1;
+    width: 2vw;
+    height: 2vw;
+    transition: all 0.25s ease-in-out;
+}
+
+.menu:hover div img {
+    opacity: 0;
+    left: -100px;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
 }
 
 .settings {
@@ -52,7 +88,7 @@ body {
     width: 60%;
     border-radius: 25px;
     background-color: #eff1ed;
-    box-shadow: gray 20px 20px 10px ;
+    box-shadow: gray 20px 20px 10000px ;
     visibility: hidden;
     z-index: 200;
 }
@@ -85,10 +121,94 @@ body {
 }
 
 .graph {
-    z-index: 10;
     height: 90%;
     width: 65%;
     position: absolute;
+    background-color: #EFF1ED;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 10px;
+    padding-top: 10px;
+    border-radius: 5px;
+    box-shadow: gray 20px 20px 10px ;
     top: 5%;
-    left: 7.5%;
+    left: 5.5%;
+}
+
+#configuration {
+    position: absolute;
+    width: 20%;
+    right: 20px;
+    top: 5%;
+    display: block;
+}
+
+#ruuviTags {
+    background-color: #EFF1ED;
+    height: 70px;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: gray 10px 20px 10px ;
+}
+
+#liveInfo {
+    margin-top:20px;
+    background-color: #eff1ed;
+    height: 700px;
+    box-shadow: gray 10px 20px 10px ;
+    border-radius: 5px;
+}
+
+.liveInfo#title {
+    color: #0a2463;
+    padding-top: 15px;
+    font-family: 'Abel', sans-serif;
+    font-size: 30px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.liveInfo#measurements {
+    display: flex;
+    justify-content: space-around;
+}
+
+.measurement#title {
+    color: #0a2463;
+    font-family: 'Abel', sans-serif;
+    font-size: 25px;
+    font-weight: 100;
+    text-align: center;
+    width: 140px;
+}
+
+#circle.value {
+    background-color: #0a2463;
+    height: 80px;
+    width: 80px;
+    margin-left: calc(50% - 40px);
+    border-radius: 45px;
+    transition: all 1s ease-in-out;
+}
+
+#iCircle.value {
+    position: absolute;
+    background-color: #eff1ed;
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 5px;
+    transition: all 2s ease-in-out;
+}
+
+#value.value {
+    font-family: 'Abel', sans-serif;
+    font-weight: 100;
+    font-size: 25px;
+    position: absolute;
+    margin-top: calc(50% - 15px);
+    text-align: center;
+    width: 100%;
 }

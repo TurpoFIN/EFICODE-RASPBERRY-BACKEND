@@ -10,9 +10,14 @@
     </head>
     <body>
         <div class="menu"> 
-            <a>Home</a>
-            <a class="setnLink">Settings</a>
-
+            <div>
+                <img id="hIcon" src="./stt04.png">
+                <a href="index.html">Home</a>
+            </div>
+            <div>
+                <img id="sIco" src="./stt042.png">
+                <a class="setnLink">Settings</a>
+            </div>
         </div>
         <div class="settings">
             jotai jotai
@@ -22,12 +27,61 @@
             <canvas id="myChart"></canvas>
         </div>
 
+        <div id="configuration" class="cfg">
+            <div id="ruuviTags" class="cfg">
+
+            </div>
+            <div id="liveInfo" class="liveInfo">
+                <h1 id="title" class="liveInfo">Live readings</h1>
+                <div id="section1" class="liveInfo"> <!-- Visalise the temperature and humidity -->
+                    <div id="measurements" class="liveInfo">
+                        <div id="msSection" class="liveInfo">
+                            <h1 id="title" class="measurement">Temperature</h1>
+                            <div id="circle" class="value">
+                                <div id="iCircle" class="value">
+                                    <h1 id="value" class="value">100</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="msSection" class="liveInfo">
+                            <h1 id="title" class="measurement">Humidity</h1>
+                            <div id="circle" class="value">
+                                <div id="iCircle" class="value">
+                                    <h1 id="value" class="value">100</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="section2" class="liveInfo"> <!-- Visualize pressure and acceleration -->
+                    <div id="measurements" class="liveInfo">
+                        <div id="msSection" class="liveInfo">
+                            <h1 id="title" class="measurement">Pressure</h1>
+                            <div id="circle" class="value">
+                                <div id="iCircle" class="value">
+                                    <h1 id="value" class="value">100</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="msSection" class="liveInfo">
+                            <h1 id="title" class="measurement">Acceleration</h1>
+                            <div id="circle" class="value">
+                                <div id="iCircle" class="value">
+                                    <h1 id="value" class="value">100</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="meme">
         </div>
         <div class="gif"></div>
         <script src="script.js"></script>
-    
+        
+        <script src="liveInfo.js"></script>
         <script src="fetchData.js"></script>
     </body>
 </html>
