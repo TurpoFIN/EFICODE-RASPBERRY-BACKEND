@@ -3,7 +3,8 @@ let ruuviData = {
     y: []
 }
 
-// Example POST method implementation:
+// FROM MOZZILLA
+// Example POST method implementation: 
 async function postData(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
@@ -26,7 +27,7 @@ async function postData(url = '', data = {}) {
 function updateData() {
     postData('http://localhost/API/GLOBAL_DATA/GET', { ruuviTag: `e60b6442f801` })
     .then(data => {
-        console.log(ruuviData); // JSON data parsed by `data.json()` call
+        console.log(ruuviData);
         if (!data.err) {
             let x = [];
             let y = [];
