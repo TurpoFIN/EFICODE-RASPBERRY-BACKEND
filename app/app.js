@@ -45,7 +45,7 @@ app.post('/API/IO_DEVICES/DATA/UPDATE', (req, res) => {
         console.log(req.body.dataPackage);
         if (req.body.dataPackage.clientKey) {
             getClientKey(req.body.dataPackage.clientKey, key => {
-                console.log("??");
+                console.log(req.body.dataPackage);
                 if (!key.err) {
                     if (dHandler.updateData(req.body.dataPackage)) {
 
