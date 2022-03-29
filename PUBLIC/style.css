@@ -1,0 +1,94 @@
+/*https://coolors.co/0a2463-eff1ed-877b66-8789c0-171412*/
+
+body {
+    background-color: #CAC4B9;
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #eff1ed;
+    height: 20vh;
+    width: 5vw;
+    transition: all 0.5s ease-in-out;
+    border-bottom-right-radius: 10px;
+}
+
+.menu:hover {
+    background-color: #eff1ed;
+    height: 20vh;
+    width: 7vw;
+}
+
+.menu a {
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0px;
+    opacity: 0;
+    font-size: 20px;
+    font-family: 'Abel', sans-serif;
+    font-weight: 500;
+    color: #0a2463;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu:hover a {
+    opacity: 1;
+}
+
+.settings {
+    position: absolute;
+    top: 12.5%;
+    left: 20%;
+    height: 75%;
+    width: 60%;
+    border-radius: 25px;
+    background-color: #eff1ed;
+    box-shadow: gray 20px 20px 10px ;
+    visibility: hidden;
+    z-index: 200;
+}
+
+._visible {
+    visibility: visible;
+}
+
+.meme {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 5px;
+    width: 5px;
+    display: block
+}
+
+.gif {
+    position: absolute;
+    display: block;
+    z-index: 10000000000000;
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+    background-image: url('https://cdn.discordapp.com/emojis/750421213838573729.gif?size=128&quality=lossless');
+}
+
+.meme:hover ~.gif {
+    visibility: visible;
+}
+
+.graph {
+    z-index: 10;
+    height: 90%;
+    width: 65%;
+    position: absolute;
+    top: 5%;
+    left: 7.5%;
+}

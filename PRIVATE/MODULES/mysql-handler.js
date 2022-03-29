@@ -69,7 +69,19 @@ module.exports = {
 
                 options.data.forEach(e => { // TODO: FUCKKKKKKSKADOJKASOIDAIUDIKUA
                     varString = varString + (i>0 ? "," : "(") + "\`" + e[0] + "\`";
-                    valString = valString + (i>0 ? "," : "(") + "\'" + e[1] + "\'";
+
+                    if (e[1] instanceof Array) {
+                        e.forEach(entries => {
+                            let y = 0;
+                            entries.forEach(value => {
+                                valString = valString + (y>0 ? "," : "(") + "\'" + value + "\'";
+                                y++;
+                            })
+                            valString = valString + ")"
+                        })
+                    } else {
+                        valString = valString + (i>0 ? "," : "(") + "\'" + e[1] + "\'";
+                    }
                     i++;
                 });
 
@@ -78,7 +90,7 @@ module.exports = {
 
                 console.log(`INSERT INTO \`${options.table}\` ${varString} VALUES ${valString}`);
 
-                if (varString !== "()") {
+                if (varString !== ")") {
                     connection.execute(`INSERT INTO \`${options.table}\` ${varString} VALUES ${valString}`, [], (error, results) => {
                         if (results)
                             cb({err: new err('200'), results: true});

@@ -1,4 +1,13 @@
+module.exports = {
+    getRuuvi: (options, cb) => {
+        console.log(options);
+        return getRuuvi(options, cb)
+    }
+}
+
+
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser')
 const cFilter = require('../PRIVATE/MODULES/cFilter');
 const dHandler = require('../PRIVATE/MODULES/dataHandler');
@@ -18,10 +27,12 @@ console.log(env.MYSQL_HOST);
 
 app.use(bodyParser.json())
 
+app.use(express.static(path.join(__dirname, '../PUBLIC')));
+
 app.listen(process.env.PORT ? process.env.PORT : 80);
 
 app.get('/', (req, res) => {
-    res.send({msg: 'test'});
+    res.sendFile(path.join(__dirname, '../PRIVATE/WEBPAGES/index/index.html'));
 });
 
 app.post('/', (req, res) => {
@@ -34,6 +45,7 @@ app.post('/API/IO_DEVICES/DATA/UPDATE', (req, res) => {
         console.log(req.body.dataPackage);
         if (req.body.dataPackage.clientKey) {
             getClientKey(req.body.dataPackage.clientKey, key => {
+                console.log("??");
                 if (!key.err) {
                     if (dHandler.updateData(req.body.dataPackage)) {
 
@@ -79,10 +91,22 @@ app.post('/API/IO_DEVICES/CONFIG/GET', (req, res) => {
     }
 });
 
+app.post('/API/GLOBAL_DATA/GET', (req, res) => {
+    if (cFilterSession.checkConnection({ip: req.ip})) {
+        let data = dHandler.getData({tagId: req.body.ruuviTag})
+        res.status(data.err_c);
+        res.send(data);
+    } else {
+        res.end();
+    }
+})
+
 function getRuuvi(options, cb) {
     if (options.ruuviId !== undefined || options.secretKey !== undefined) {
         db.getTableContents((res => {
-            if (!res.err) {
+            console.log("res");
+            console.log(res);
+            if (!res.err.err) {
                 const tags = res.results;
                 let tag = undefined;
     
@@ -90,9 +114,11 @@ function getRuuvi(options, cb) {
                     if (tag.data.id === options.ruuviId || tag.data.options) tag = tag;
                 });
 
+                console.log(tag);
                 if (tag) cb({err_c: 200, err: false, results: {ruuviTag: tag}});
                 else cb({err_c: 404, err: true});
             } else {
+                console.log("fucker");
                 cb({err_c: 500, err: true});
             }
     
@@ -105,6 +131,7 @@ function getRuuvi(options, cb) {
 function getClientKey(key, cb) {
     if (key) {
         db.getTableContents(res => {
+            console.log("key fucked up");
             if (res.err.err) cb({err_c: 500, err: true});
             else {
                 let found = false;
@@ -148,8 +175,11 @@ function addClientKey(ruuviobj, cb) {
                 db.tableAddRow((response) => {
                     console.log('Added a new clientKey!')
                     console.log(response);
-    
-                    if (response.err.err)  cb({err_c: 500, err: true});
+                    
+                    if (response.err.err)  {
+                        console.log("idk");
+                        cb({err_c: 500, err: true});
+                    }
                     else  cb({err_c: 200, err: false, results: {secretKey, ruuviobj}}); 
                 }, {table: 'clientKeys', data: [['secretKey', secretKey], ['data', JSON.stringify(ruuviobj.simpleObj())]]})
             }
@@ -192,11 +222,6 @@ class ruuviTag {
         return {id: this.id, options: this.options};
     }
 }
-
-module.exports = {
-    getRuuvi: (options, cb) => {return getRuuvi(options, cb)}
-}
-
 
 /*
         FOR TESTING

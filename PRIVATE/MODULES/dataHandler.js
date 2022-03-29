@@ -5,6 +5,8 @@ module.exports = {
     getData: (options) => {
         let results = {err_c: 404, err: true};
 
+        console.log(options);
+
         if (options.tagId && dataObj[`${options.tagId}`]) results = {err_c: 200, err: false, results: {dataObj: dataObj[`${options.tagId}`]}};
         else if (options.tagId === 1 && dataObj[`${options.tagId}`]) results = {err_c: 200, err: false, results: {dataObj}};
 
@@ -16,13 +18,17 @@ module.exports = {
         console.log(entry);
 
         for (const [key, value] of Object.entries(entry.data)) {
-            console.log(`${key}: ${value}`);
+            console.log(value);
             origin.getRuuvi({ruuviId: key}, res => {
-                console.log(res);
+                console.log('fuck');
+                console.log(value);
+                dataObj[`${key}`] = value;
+                console.log('dataObj');
+                console.log(dataObj);
                 if (!res.err) {
 
                 } else {
-                    
+
                 }
             });
         }
