@@ -54,7 +54,7 @@ let ruuviData = {
                 }
             }
   
-            if (x != null && y != null) {
+            if (time.length > 0) {
               ruuviData.time = time;
               ruuviData.temperature = temperature;
               ruuviData.humidity = humidity;
