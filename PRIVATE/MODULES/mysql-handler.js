@@ -69,19 +69,7 @@ module.exports = {
 
                 options.data.forEach(e => { // TODO: FUCKKKKKKSKADOJKASOIDAIUDIKUA
                     varString = varString + (i>0 ? "," : "(") + "\`" + e[0] + "\`";
-
-                    if (e[1] instanceof Array) {
-                        e.forEach(entries => {
-                            let y = 0;
-                            entries.forEach(value => {
-                                valString = valString + (y>0 ? "," : ")") + "\'" + value + "\'";
-                                y++;
-                            })
-                            valString = valString + ")"
-                        })
-                    } else {
-                        valString = valString + (i>0 ? "," : "(") + "\'" + e[1] + "\'";
-                    }
+                    valString = valString + (i>0 ? "," : "(") + "\'" + e[1] + "\'";
                     i++;
                 });
 
@@ -100,7 +88,31 @@ module.exports = {
                 } else {
                     cb({err: new err('400'), results: undefined});
                 }
-            } else {
+            } else if (options.table && options.data && options.columns) {
+                let varString = "";
+                let valString = "";
+
+                let i = 0;
+                options.columns.forEach(e => {
+                    varString = varString + (i>0 ? "," : "(") + "\`" + e + "\`";
+                    i++;    
+                });
+
+                let y = 0;
+                options.data.forEach(e => {
+                    i = 0;
+                    e.forEach(entry => {
+                        valString = valString + (i>0 ? "," : "(") + "\'" + entry + "\'";
+                        i++;
+                    });
+
+                    valString = valString + (y===options.data.length-1 ? ")" : "),");
+
+                    y++;
+                    i++;
+                });
+            } 
+            else {
                 cb({err: new err('404'), results: undefined});
             }
         } else {

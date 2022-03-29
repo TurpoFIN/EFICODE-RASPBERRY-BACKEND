@@ -12,15 +12,9 @@ const dir = __dirname.split('\\app')[0]
 
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
-let a = [];
-
-console.log(a instanceof Array);
-
 require('dotenv').config();
 
 console.log(env.MYSQL_HOST);
-
-app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
