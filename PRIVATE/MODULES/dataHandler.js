@@ -18,28 +18,42 @@ module.exports = {
 
         for (const [key, value] of Object.entries(entry.data)) {
             origin.getRuuvi({ruuviId: key}, res => {
-                console.log(value);
-                dataObj[`${key}`] = value;
-                console.log('dataObj');
-                console.log(dataObj);
-                if (!res.err) {
-
+                
+                if (dataObj[`${key}`]) {
+                    dataObj[`${key}`] = module.exports.merging(dataObj[`${key}`], value);
                 } else {
-
+                    dataObj[`${key}`] = value;
                 }
+
+                if (res.err) {
+                    console.log("Error: " + res.err);
+                }   
             });
         }
 
         return true;
     },
 
-    mergeData(data1, data2) {
-        let data = {};
+    merging(original, from) {
+        for (const [key, value] of Object.entries(from)) {
+            if (!(value instanceof Object) || value instanceof Array) {
+                if (original[key] instanceof Array) {
+                    if (value instanceof Array) {
+                        original[key] = original[key].concat(value);
+                    } else {
+                        original[key].push(value);
+                    }
+                } else {
+                    original[key] = value;
+                }
+            } else {
+                if (!original[key]) original[key] = {};
+                origin[key] = this.merging(original[key], value);
+            }
+        }
 
-
-    },
-
-    merging() {
-        
+        return original;
     }
 }
+
+console.log(module.exports.merging({b: {a: ['a']}}, {b: {c: ['b']}}));

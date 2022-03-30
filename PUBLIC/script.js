@@ -52,8 +52,8 @@ function updateGraph() {
                 tension: 0.2,
             }, {
                 label: 'Pressure',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: pressure.background.style.background,
+                borderColor: pressure.background.style.background,
                 data: ruuviData.pressure,
                 tension: 0.2,
             }]
