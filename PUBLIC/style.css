@@ -19,6 +19,9 @@ body {
     height: 20vh;
     width: 5vw;
     transition: all 0.5s ease-in-out;
+    border: #0a2463 solid 1px;
+    border-top: none;
+    border-left: none;
     border-bottom-right-radius: 10px;
 }
 
@@ -34,7 +37,7 @@ body {
     justify-content: space-around;
     align-items: center;
     height: 5vh;
-    width: 5vw;
+    width: 4vw;
     transition: all 0.5s ease-in-out;
 }
 
@@ -49,7 +52,7 @@ body {
     font-family: 'Abel', sans-serif;
     font-weight: 500;
     color: #0a2463;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.75s ease-in-out;
 }
 
 .menu:hover div a {
@@ -88,9 +91,10 @@ body {
     width: 60%;
     border-radius: 25px;
     background-color: #eff1ed;
-    box-shadow: gray 20px 20px 10000px ;
-    visibility: hidden;
+    box-shadow: gray 20px 20px 10000px;
     z-index: 200;
+    transition: all 0.5s ease-in-out;
+    visibility: hidden;
 }
 
 ._visible {
@@ -121,6 +125,7 @@ body {
 }
 
 .graph {
+    z-index: -1;
     height: 90%;
     width: 65%;
     position: absolute;
@@ -130,9 +135,14 @@ body {
     padding-top: 10px;
     padding-top: 10px;
     border-radius: 5px;
-    box-shadow: gray 20px 20px 10px ;
+    box-shadow: rgb(126, 117, 104) 20px 20px 10px ;
     top: 5%;
     left: 5.5%;
+}
+
+body {
+    z-index: -10000000;
+    height:0px;
 }
 
 #configuration {
@@ -148,14 +158,14 @@ body {
     height: 70px;
     width: 100%;
     border-radius: 5px;
-    box-shadow: gray 10px 20px 10px ;
+    box-shadow: rgb(126, 117, 104) 10px 20px 10px ;
 }
 
 #liveInfo {
     margin-top:20px;
     background-color: #eff1ed;
-    height: 700px;
-    box-shadow: gray 10px 20px 10px ;
+    height: 34vw;
+    box-shadow: rgb(126, 117, 104) 10px 20px 10px ;
     border-radius: 5px;
 }
 
@@ -211,4 +221,24 @@ body {
     margin-top: calc(50% - 15px);
     text-align: center;
     width: 100%;
+}
+
+footer {
+    margin-top: 1vw;
+    background-color: #eff1ed;
+    border-radius: 5px;
+    box-shadow: rgb(126, 117, 104) 10px 20px 10px ;
+    width: 100%;
+    height: 5.6vw;
+}
+
+footer p {
+    position: absolute;
+    color: #0a2463;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    text-align: center;
+    bottom: 3%;
+    margin-left: 12%;
 }

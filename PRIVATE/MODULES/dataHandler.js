@@ -15,12 +15,9 @@ module.exports = {
 
     updateData: (entry, cb) => {
         console.log("New data entry!");
-        console.log(entry);
 
         for (const [key, value] of Object.entries(entry.data)) {
-            console.log(value);
             origin.getRuuvi({ruuviId: key}, res => {
-                console.log('fuck');
                 console.log(value);
                 dataObj[`${key}`] = value;
                 console.log('dataObj');

@@ -70,6 +70,9 @@ function updateGraph() {
         },
         options: {
             aspectRatio: 1.5,
+            animation: {
+                duration: 0
+            }
         }
     }
 
