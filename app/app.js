@@ -131,11 +131,10 @@ function getRuuvi(options, cb) {
 function getClientKey(key, cb) {
     if (key) {
         db.getTableContents(res => {
-            console.log("key fucked up");
             if (res.err.err) cb({err_c: 500, err: true});
             else {
                 let found = false;
-
+                
                 res.results.forEach(entry => {
                     if (entry.secretKey === key) {
                         cb({err_c: 200, err: false, results: {secretKey: entry.secretKey, simpleTag: JSON.parse(entry.data)}});
