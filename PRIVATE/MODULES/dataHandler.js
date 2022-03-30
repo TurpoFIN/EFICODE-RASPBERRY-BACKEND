@@ -31,5 +31,15 @@ module.exports = {
         }
 
         return true;
+    },
+
+    mergeData(data1, data2) {
+        let data = {};
+
+
+    },
+
+    merging() {
+        
     }
 }
