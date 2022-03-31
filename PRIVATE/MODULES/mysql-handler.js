@@ -44,7 +44,7 @@ module.exports = {
                     conditionString = " 1"
                 }
 
-                //console.log(`SELECT ${columnString} FROM \`${options.table}\` WHERE ${conditionString}`);
+                console.log(`SELECT ${columnString} FROM \`${options.table}\` WHERE ${conditionString}`);
                 connection.execute(`SELECT ${columnString} FROM \`${options.table}\` WHERE ${conditionString}`, [], (error, results) => {
                     if (results)
                         cb({err: new err('200'), results: results});
