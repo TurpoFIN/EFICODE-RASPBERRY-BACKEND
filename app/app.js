@@ -147,6 +147,8 @@ function getRuuvi(options, cb) {
 function getClientKey(key, cb) {
     if (key) {
         db.getTableContents(res => {
+            console.log(res);
+            
             if (res.err.err) cb({err_c: 500, err: true});
             else {
                 let found = false;
