@@ -32,7 +32,7 @@ async function postData(url = '', data = {}) {
 
 
 function updateData() {
-  postData('http://localhost/API/GLOBAL_DATA/GET', { ruuviTag: currentTag })
+  postData('http://70.34.195.55/API/GLOBAL_DATA/GET', { ruuviTag: currentTag })
   .then(data => {
       console.log(ruuviData);
       if (!data.err) {
@@ -80,7 +80,7 @@ function updateData() {
       console.log(err);
   });    
 
-  postData('http://localhost/API/GLOBAL_DATA/GET/TAGS', {}).then(data => {
+  postData('http://70.34.195.55/API/GLOBAL_DATA/GET/TAGS', {}).then(data => {
     if (data) {
       console.log('data');
       console.log(data.results);
