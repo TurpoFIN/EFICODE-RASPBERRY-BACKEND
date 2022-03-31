@@ -36,7 +36,7 @@ module.exports = {
             let result = {err_c: 400, err: true}
     
             if (options.ip) {
-                let con = getConnection(options);
+                let con = this.getConnection(options);
     
                 if (con.err === false) {
                     con = con.results.conObj;

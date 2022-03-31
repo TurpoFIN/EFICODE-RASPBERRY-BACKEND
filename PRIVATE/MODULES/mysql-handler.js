@@ -61,24 +61,36 @@ module.exports = {
     tableAddRow: (cb, options) => {
         if (options && cb) {
             if (options.table && options.data) {
-                let varString = "(";
-                let valString = "(";
+                let varString = "";
+                let valString = "";
                 let i = 0;
 
                 //console.log(options);
 
-                options.data.forEach(e => {
-                    varString = varString + (i>0 ? "," : "") + "\`" + e[0] + "\`";
-                    valString = valString + (i>0 ? "," : "") + "\'" + e[1] + "\'";
+                options.data.forEach(e => { // TODO: FUCKKKKKKSKADOJKASOIDAIUDIKUA
+                    varString = varString + (i>0 ? "," : "(") + "\`" + e[0] + "\`";
+
+                    if (e[1] instanceof Array) {
+                        e.forEach(entries => {
+                            let y = 0;
+                            entries.forEach(value => {
+                                valString = valString + (y>0 ? "," : "(") + "\'" + value + "\'";
+                                y++;
+                            })
+                            valString = valString + ")"
+                        })
+                    } else {
+                        valString = valString + (i>0 ? "," : "(") + "\'" + e[1] + "\'";
+                    }
                     i++;
                 });
 
                 varString = varString + ")"
                 valString = valString + ")"
 
-                //console.log(`INSERT INTO \`${options.table}\` ${varString} VALUES ${valString}`);
+                console.log(`INSERT INTO \`${options.table}\` ${varString} VALUES ${valString}`);
 
-                if (varString !== "()") {
+                if (varString !== ")") {
                     connection.execute(`INSERT INTO \`${options.table}\` ${varString} VALUES ${valString}`, [], (error, results) => {
                         if (results)
                             cb({err: new err('200'), results: true});
@@ -88,7 +100,31 @@ module.exports = {
                 } else {
                     cb({err: new err('400'), results: undefined});
                 }
-            } else {
+            } else if (options.table && options.data && options.columns) {
+                let varString = "";
+                let valString = "";
+
+                let i = 0;
+                options.columns.forEach(e => {
+                    varString = varString + (i>0 ? "," : "(") + "\`" + e + "\`";
+                    i++;    
+                });
+
+                let y = 0;
+                options.data.forEach(e => {
+                    i = 0;
+                    e.forEach(entry => {
+                        valString = valString + (i>0 ? "," : "(") + "\'" + entry + "\'";
+                        i++;
+                    });
+
+                    valString = valString + (y===options.data.length-1 ? ")" : "),");
+
+                    y++;
+                    i++;
+                });
+            } 
+            else {
                 cb({err: new err('404'), results: undefined});
             }
         } else {

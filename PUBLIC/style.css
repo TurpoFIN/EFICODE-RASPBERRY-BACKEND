@@ -1,0 +1,348 @@
+/*https://coolors.co/0a2463-eff1ed-877b66-8789c0-171412*/
+
+body {
+    background-color: #CAC4B9;
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    transition: all 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.menu {
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #eff1ed;
+    height: 20vh;
+    width: 5vw;
+    transition: all 0.5s ease-in-out;
+    border: #0a2463 solid 1px;
+    border-top: none;
+    border-left: none;
+    border-bottom-right-radius: 10px;
+}
+
+.menu:hover {
+    background-color: #eff1ed;
+    height: 20vh;
+    width: 7vw;
+}
+
+.menu div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 5vh;
+    width: 4vw;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu div a {
+    position: absolute;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    margin: 0px;
+    opacity: 0;
+    font-size: 20px;
+    font-family: 'Abel', sans-serif;
+    font-weight: 500;
+    color: #0a2463;
+    transition: all 0.75s ease-in-out;
+}
+
+.menu:hover div a {
+    opacity: 1;
+}
+
+.menu div #sIcon {
+    top: 3vw;
+}
+
+.menu div #hIcon {
+    top: 1vw;
+}
+
+.menu div img {
+    position: absolute;
+    left: 1.5vw;
+    opacity: 1;
+    width: 2vw;
+    height: 2vw;
+    transition: all 0.25s ease-in-out;
+}
+
+.menu:hover div img {
+    opacity: 0;
+    left: -100px;
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+
+.settings {
+    position: absolute;
+    top: 12.5%;
+    left: 20%;
+    height: 75%;
+    width: 60%;
+    border-radius: 25px;
+    background-color: #eff1ed;
+    box-shadow: gray 20px 20px 10000px;
+    z-index: 200;
+    transition: all 0.5s ease-in-out;
+    visibility: hidden;
+}
+
+._visible {
+    visibility: visible;
+}
+
+.meme {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 5px;
+    width: 5px;
+    display: block
+}
+
+.gif {
+    position: absolute;
+    display: block;
+    z-index: 10000000000000;
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+    background-image: url('https://cdn.discordapp.com/emojis/750421213838573729.gif?size=128&quality=lossless');
+}
+
+.meme:hover ~.gif {
+    visibility: visible;
+}
+
+.graph {
+    z-index: -1;
+    height: 90%;
+    width: 65%;
+    position: absolute;
+    background-color: #EFF1ED;
+    padding-left: 70px;
+    padding-right: 70px;
+    padding-top: 10px;
+    padding-top: 10px;
+    border-radius: 5px;
+    box-shadow: rgb(126, 117, 104) 20px 20px 10px ;
+    top: 5%;
+    left: 5.5%;
+}
+
+.graphIcon {
+    background-image: url(../Gigakuvaaja.png);
+    height: 60px;
+    width: 60px;
+    z-index: 100000;
+    position: absolute;
+    margin-left: -60px;
+}
+
+body {
+    z-index: -10000000;
+    height:0px;
+}
+
+#ruuviTags {
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+}
+
+#current {
+    font-size: 20px;
+    font-family: 'Abel', sans-serif;
+    font-weight: 500;
+    color: #0a2463;
+    margin-top: 0px;
+    margin-left: 0px;
+    padding-left: 15px;
+    margin-top: calc(30px - 15px);
+    user-select: none;
+    border-bottom: 1px solid #0a2463;
+    height: 45px;
+}
+
+
+#ruuviTags.collapsed {
+    height: 60px;
+}
+
+#ruuviTags.collapsed:hover {
+    cursor: pointer;
+}
+
+#ruuviTags.active {
+    height: 500px;
+}
+
+#ruuviList {
+    list-style: none;
+    margin-top: -20px;
+}
+
+#ruuviList li {
+    font-family: 'Abel', sans-serif;
+    font-weight: 500;
+    color: #0a2463;
+    font-size: 20px;
+    border-bottom: 1px solid #0a2463;
+    border-left: 1px solid #0a2463;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    width: 100%;
+    user-select: none;
+}
+
+#ruuviList li:hover {
+    cursor: pointer;
+    color: #0c2e7c;
+}
+
+#current_img {
+    position: absolute;
+    height: 25px;
+    width: 40px;
+    right: 10px;
+    top: calc(30px - 12.5px);
+}
+
+#current_img.active {
+    transform: rotate(180deg);
+}
+
+#configuration {
+    position: absolute;
+    width: 20%;
+    right: 20px;
+    top: 5%;
+    display: block;
+}
+
+#ruuviTags {
+    background-color: #EFF1ED;
+    height: 70px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+#liveInfo {
+    z-index: -100;
+    margin-top: 20px;
+    background-color: #eff1ed;
+    height: 34vw;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+#liveInfo.collapsed {
+    z-index: -100;
+    margin-top: 20px;
+    background-color: #eff1ed;
+    height: 10vw;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+
+.liveInfo#title {
+    color: #0a2463;
+    padding-top: 15px;
+    font-family: 'Abel', sans-serif;
+    font-size: 30px;
+    font-weight: 100;
+    text-align: center;
+}
+
+.liveInfo#title.collapsed {
+    visibility: hidden;
+}
+
+.liveInfo#measurements {
+    display: flex;
+    justify-content: space-around;
+}
+
+#section2 {
+    transition: all 0.3s ease-in-out 0.2s;
+}
+
+#section2.collapsed {
+    visibility: hidden;
+    transition: all 0s ease-in-out 0.2s;
+}
+
+#section1.collapsed {
+    margin-top: -22.5%;
+}
+
+.measurement#title {
+    color: #0a2463;
+    font-family: 'Abel', sans-serif;
+    font-size: 25px;
+    font-weight: 100;
+    text-align: center;
+    width: 140px;
+}
+
+#circle.value {
+    background-color: #0a2463;
+    height: 80px;
+    width: 80px;
+    margin-left: calc(50% - 40px);
+    border-radius: 45px;
+}
+
+#iCircle.value {
+    position: absolute;
+    background-color: #eff1ed;
+    width: 70px;
+    height: 70px;
+    border-radius: 100px;
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#value.value {
+    font-family: 'Abel', sans-serif;
+    font-weight: 100;
+    font-size: 25px;
+    position: absolute;
+    margin-top: calc(50% - 15px);
+    text-align: center;
+    width: 100%;
+    z-index: 0;
+}
+
+footer {
+    margin-top: 1vw;
+    background-color: #eff1ed;
+    border-radius: 5px;
+    width: 100%;
+    height: 5.6vw;
+}
+
+footer p {
+    position: absolute;
+    color: #0a2463;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    text-align: center;
+    bottom: 1%;
+    text-align: center;
+    width: 100%;
+}
