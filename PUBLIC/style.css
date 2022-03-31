@@ -140,9 +140,86 @@ body {
     left: 5.5%;
 }
 
+.graphIcon {
+    background-image: url(../Gigakuvaaja.png);
+    height: 60px;
+    width: 60px;
+    z-index: 100000;
+    position: absolute;
+    margin-left: -60px;
+}
+
 body {
     z-index: -10000000;
     height:0px;
+}
+
+#ruuviTags {
+    overflow: hidden;
+    transition: height 0.5s ease-in-out;
+}
+
+#current {
+    font-size: 20px;
+    font-family: 'Abel', sans-serif;
+    font-weight: 500;
+    color: #0a2463;
+    margin-top: 0px;
+    margin-left: 0px;
+    padding-left: 15px;
+    margin-top: calc(30px - 15px);
+    user-select: none;
+    border-bottom: 1px solid #0a2463;
+    height: 45px;
+}
+
+
+#ruuviTags.collapsed {
+    height: 60px;
+}
+
+#ruuviTags.collapsed:hover {
+    cursor: pointer;
+}
+
+#ruuviTags.active {
+    height: 500px;
+}
+
+#ruuviList {
+    list-style: none;
+    margin-top: -20px;
+}
+
+#ruuviList li {
+    font-family: 'Abel', sans-serif;
+    font-weight: 500;
+    color: #0a2463;
+    font-size: 20px;
+    border-bottom: 1px solid #0a2463;
+    border-left: 1px solid #0a2463;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    width: 100%;
+    user-select: none;
+}
+
+#ruuviList li:hover {
+    cursor: pointer;
+    color: #0c2e7c;
+}
+
+#current_img {
+    position: absolute;
+    height: 25px;
+    width: 40px;
+    right: 10px;
+    top: calc(30px - 12.5px);
+}
+
+#current_img.active {
+    transform: rotate(180deg);
 }
 
 #configuration {
@@ -158,16 +235,27 @@ body {
     height: 70px;
     width: 100%;
     border-radius: 5px;
-    box-shadow: rgb(126, 117, 104) 10px 20px 10px ;
 }
 
 #liveInfo {
-    margin-top:20px;
+    z-index: -100;
+    margin-top: 20px;
     background-color: #eff1ed;
     height: 34vw;
-    box-shadow: rgb(126, 117, 104) 10px 20px 10px ;
     border-radius: 5px;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
 }
+
+#liveInfo.collapsed {
+    z-index: -100;
+    margin-top: 20px;
+    background-color: #eff1ed;
+    height: 10vw;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
 
 .liveInfo#title {
     color: #0a2463;
@@ -178,9 +266,26 @@ body {
     text-align: center;
 }
 
+.liveInfo#title.collapsed {
+    visibility: hidden;
+}
+
 .liveInfo#measurements {
     display: flex;
     justify-content: space-around;
+}
+
+#section2 {
+    transition: all 0.3s ease-in-out 0.2s;
+}
+
+#section2.collapsed {
+    visibility: hidden;
+    transition: all 0s ease-in-out 0.2s;
+}
+
+#section1.collapsed {
+    margin-top: -22.5%;
 }
 
 .measurement#title {
@@ -198,7 +303,6 @@ body {
     width: 80px;
     margin-left: calc(50% - 40px);
     border-radius: 45px;
-    transition: all 1s ease-in-out;
 }
 
 #iCircle.value {
@@ -210,7 +314,6 @@ body {
     text-align: center;
     margin-top: 5px;
     margin-left: 5px;
-    transition: all 2s ease-in-out;
 }
 
 #value.value {
@@ -221,13 +324,13 @@ body {
     margin-top: calc(50% - 15px);
     text-align: center;
     width: 100%;
+    z-index: 0;
 }
 
 footer {
     margin-top: 1vw;
     background-color: #eff1ed;
     border-radius: 5px;
-    box-shadow: rgb(126, 117, 104) 10px 20px 10px ;
     width: 100%;
     height: 5.6vw;
 }

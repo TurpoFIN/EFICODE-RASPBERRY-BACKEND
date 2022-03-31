@@ -6,6 +6,10 @@ let ruuviData = {
   acceleration: []
 }
 
+let ruuviTags = [];
+
+let currentTag = 'e60b6442f801';
+
 // FROM MOZZILLA
 // Example POST method implementation: 
 async function postData(url = '', data = {}) {
@@ -28,7 +32,7 @@ async function postData(url = '', data = {}) {
 
 
 function updateData() {
-  postData('http://localhost/API/GLOBAL_DATA/GET', { ruuviTag: `e60b6442f801` })
+  postData('http://localhost/API/GLOBAL_DATA/GET', { ruuviTag: currentTag })
   .then(data => {
       console.log(ruuviData);
       if (!data.err) {
@@ -48,8 +52,6 @@ function updateData() {
                             temperatureArr.push(arr.data.temperature);
                             humidityArr.push(arr.data.humidity);
                             pressureArr.push(Math.ceil(arr.data.pressure/1000)/100);
-                            //console.log(arr.data);
-                            //accelerationArr.push(arr.data.acceleration);
                           })
                       }
                   }
@@ -77,6 +79,16 @@ function updateData() {
   }).catch(err => {
       console.log(err);
   });    
+
+  postData('http://localhost/API/GLOBAL_DATA/GET/TAGS', {}).then(data => {
+    if (data) {
+      console.log('data');
+      console.log(data.results);
+      ruuviTags = data.results.tags;
+
+      updateDropDown();
+    } 
+  }).catch(err => { console.log(err); } );
 }
 
 setInterval(() => {

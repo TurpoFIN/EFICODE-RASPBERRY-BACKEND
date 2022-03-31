@@ -76,7 +76,14 @@ function updateGraph() {
         }
     }
 
-    console.log(myChart.config);
+    let legendItem = myChart.legend.legendItems;
+    console.log(myChart);
+    console.log(legendItem);
     myChart.config._config = config;
     myChart.update();
+    if (legendItem.length > 1) {
+        console.log('hullu');
+        myChart.legend.legendItems = legendItem
+        myChart.update();
+    }
 }

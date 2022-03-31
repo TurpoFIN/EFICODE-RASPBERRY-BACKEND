@@ -101,6 +101,23 @@ app.post('/API/GLOBAL_DATA/GET', (req, res) => {
     }
 })
 
+app.post('/API/GLOBAL_DATA/GET/TAGS', (req, res) => {
+    if (cFilterSession.checkConnection({ip: req.ip})) {
+        let tags = [];
+        let dataObj = dHandler.getDataObj();
+
+        // Iterate through the dataObj object and add object keys to tags array
+        for (const [key, value] of Object.entries(dataObj)) {
+            tags.push(key);
+        }
+
+        res.status(200);
+        res.send({err_c: 200, err: false, results: {tags}});
+    } else {
+        res.end();
+    }
+});
+
 function getRuuvi(options, cb) {
     if (options.ruuviId !== undefined || options.secretKey !== undefined) {
         db.getTableContents((res => {

@@ -53,6 +53,10 @@ module.exports = {
         }
 
         return original;
+    }, 
+
+    getDataObj() {
+        return dataObj;
     }
 }
 
