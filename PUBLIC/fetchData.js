@@ -8,7 +8,7 @@ let ruuviData = {
 
 let ruuviTags = [];
 
-let currentTag = 'e60b6442f801';
+let currentTag = 'f6e84a97cdea';
 
 // FROM MOZZILLA
 // Example POST method implementation: 
