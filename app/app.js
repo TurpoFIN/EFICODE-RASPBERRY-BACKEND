@@ -135,7 +135,6 @@ function getRuuvi(options, cb) {
                 if (tag) cb({err_c: 200, err: false, results: {ruuviTag: tag}});
                 else cb({err_c: 404, err: true});
             } else {
-                console.log("fucker");
                 cb({err_c: 500, err: true});
             }
     
